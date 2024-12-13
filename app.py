@@ -68,7 +68,7 @@ if uploaded_file is not None:
 
         try:
             # Execute the SQL code
-            cursor.execute(clean_sql)
+            cursor.execute(generated_sql)
             results = cursor.fetchall()
 
             # Display the results
