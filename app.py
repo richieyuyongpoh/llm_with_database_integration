@@ -49,35 +49,53 @@ if uploaded_file is not None:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a helpful AI assistant that generates SQLITE SQL code based on user queries and database schemas.Strictly SQlite codes only. No description. If users ask something not related to the schema, politely reject the users."},
+                {"role": "system", "content": "You are a helpful AI assistant that generates SQLITE SQL code based on user queries and database schemas.Strictly SQlite codes only. No description. If users ask something not related to the schema, just state 'nothing is found' "},
                 {"role": "user", "content": f"Schema:\n{schema}\n\nQuery: {user_query}"}
             ]
         )
-        
-        generated_sql = response.choices[0].message.content
+        if response.choices[0].message.content!= 'nothing is found':
+            generated_sql = response.choices[0].message.content
 
-        clean_sql = re.sub(r"```sql\s*(.*?)\s*```", r"\1", generated_sql)
+            clean_sql = re.sub(r"```sql\s*(.*?)\s*```", r"\1", generated_sql)
  
 
 
         
 
-        # Connect to the SQLite database 
-        conn = sqlite3.connect('bank11.sqlite')
-        cursor = conn.cursor()
+            # Connect to the SQLite database 
+            conn = sqlite3.connect('bank11.sqlite')
+            cursor = conn.cursor()
 
-        try:
-            # Execute the SQL code
-            cursor.execute(clean_sql)
-            results = cursor.fetchall()
+            try:
+                # Execute the SQL code
+                cursor.execute(clean_sql)
+                results = cursor.fetchall()
 
-            # Display the results
-            st.write("Results:")
-         #   st.dataframe(results)
+                # Display the results
+                st.write("Results:")
+             #   st.dataframe(results)
 
-            # Generate a response using GPT-4o-mini, optionally including the user's name
+                # Generate a response using GPT-4o-mini, optionally including the user's name
+                response = openai.ChatCompletion.create(
+                    model="gpt-4o-mini",
+                    messages=[
+                        {"role": "system", "content": f"You are a helpful AI assistant. {'Address the user as ' + user_name if user_name else ''}"},
+                        {"role": "user", "content": f"SQL results:\n{results}\n\nAnswer the user's original query: {user_query}"}
+                    ]
+                )
+                # Display the chatbot's response
+                st.write(response.choices[0].message.content)
+
+            except Exception as e:
+                st.error(f"Error executing SQL: {e}")
+
+            finally:
+                # Close the database connection
+                conn.close()
+
+        else:
             response = openai.ChatCompletion.create(
-                model="gpt-4o-mini",
+                 model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": f"You are a helpful AI assistant. {'Address the user as ' + user_name if user_name else ''}"},
                     {"role": "user", "content": f"SQL results:\n{results}\n\nAnswer the user's original query: {user_query}"}
@@ -85,10 +103,3 @@ if uploaded_file is not None:
             )
             # Display the chatbot's response
             st.write(response.choices[0].message.content)
-
-        except Exception as e:
-            st.error(f"Error executing SQL: {e}")
-
-        finally:
-            # Close the database connection
-            conn.close()
