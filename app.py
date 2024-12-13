@@ -23,11 +23,11 @@ if st.checkbox("Show Demo Information"):
 
         **Example Queries:**
 
-        1. List all branches
-        2. List count of customer from different branches
-        3. What is the branch with the highest count of customers 
-        4. Where is 'petaling jaya' branch located
-        5. Who are you?
+        1. List all branches.
+        2. Provide a list of branches and the number of customers at each.
+        3. What is the branch with the highest count of customers ?
+        4. Where is 'petaling jaya' branch located ?
+        5. Who are you ?
         """
     )
 
