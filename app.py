@@ -19,6 +19,12 @@ if st.checkbox("Show Demo Information"):
         This app demonstrates a simple demo on LLM with database integration. 
         It uses a schema provided by [Ankit Kumar](https://github.com/ankittkp/Bank-Database-Design). 
         The database is created using dummy data. Only a few entries are inserted in the database.
+
+        **Example Queries:**
+
+        1. List all branches
+        2. List count of customer from different branches
+        3. What is the branch with the highest count of customers 
         """
     )
 
