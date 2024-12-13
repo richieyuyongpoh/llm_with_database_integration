@@ -59,21 +59,14 @@ if uploaded_file is not None:
 
         st.code(clean_sql, language="sql")
         
-        st.write("Copy and paste the SQL code below to execute and get the answer.")
 
-# --- Part 2: SQL Execution and Response ---
-
-    # SQL code input (for user to paste the generated code)
-    sql_code = st.text_area("Paste SQL Code Here:")
-
-    if st.button("Execute SQL"):
         # Connect to the SQLite database 
         conn = sqlite3.connect('bank11.sqlite')
         cursor = conn.cursor()
 
         try:
             # Execute the SQL code
-            cursor.execute(sql_code)
+            cursor.execute(clean_sql)
             results = cursor.fetchall()
 
             # Display the results
