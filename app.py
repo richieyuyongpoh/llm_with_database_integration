@@ -57,6 +57,7 @@ if uploaded_file is not None:
         generated_sql = response.choices[0].message.content
         clean_sql = re.sub(r"```sql\s*(.*?)\s*```", r"\1", generated_sql)
 
+
         st.code(clean_sql, language="sql")
         
 
