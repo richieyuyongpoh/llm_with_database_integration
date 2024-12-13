@@ -59,7 +59,7 @@ if uploaded_file is not None:
         clean_sql = re.sub(r"```sql\s*(.*?)\s*```", r"\1", generated_sql)
         st.write(clean_sql)
 
-        st.code(clean_sql, language="sql")
+        st.code(generated_sql, language="sql")
         
 
         # Connect to the SQLite database 
