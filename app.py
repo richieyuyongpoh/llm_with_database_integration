@@ -14,7 +14,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 st.title("LLM-Powered Chatbot with Database Integration")
 
 # Checkbox for demo information
-if st.checkbox("Show Demo Information"):
+if st.checkbox("Read Me"):
     st.write(
         """
         This app demonstrates a simple demo on LLM with database integration. 
@@ -38,7 +38,7 @@ user_name = st.sidebar.text_input("Your Name (optional):")
 # File upload for database schema (text file)
 uploaded_file = st.sidebar.file_uploader("Upload Database Schema (Text):", type="txt")
 
-# st.write("Instruction: Go to the sidebar and then upload a schema. You may use the [example](https://drive.google.com/file/d/1scTV3Vq_qG6cRxmi4gYO_CtSispqc1gi/view?usp=sharing) provided. Then ask a question about your data. 
+st.write("Instruction: Go to the sidebar and then upload a schema. You may use the [example](https://drive.google.com/file/d/1scTV3Vq_qG6cRxmi4gYO_CtSispqc1gi/view?usp=sharing) provided. Then ask a question about your data. 
 
 if uploaded_file is not None:
     # Read the schema from the uploaded text file
