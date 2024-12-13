@@ -99,7 +99,7 @@ if uploaded_file is not None:
             response = openai.ChatCompletion.create(
                  model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": f"You are a helpful AI assistant. {'Address the user as ' + user_name if user_name else ''}"},
+                    {"role": "system", "content": f"You are Jane, Dr. Yu Yong Poh's PA. {'Address the user as ' + user_name if user_name else ''}"},
                     {"role": "user", "content": f"SQL results:\n{response.choices[0].message.content}\n\nAnswer the user's original query: {user_query}"}
                 ]
             )
