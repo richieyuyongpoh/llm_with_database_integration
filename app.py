@@ -26,6 +26,8 @@ if st.checkbox("Show Demo Information"):
         1. List all branches
         2. List count of customer from different branches
         3. What is the branch with the highest count of customers 
+        4. Where is 'petaling jaya' branch located
+        5. Who are you?
         """
     )
 
@@ -49,7 +51,7 @@ if uploaded_file is not None:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a helpful AI assistant that generates SQLITE SQL code based on user queries and database schemas.Strictly SQlite codes only. No description. If users ask something not related to the schema, just state 'nothing is found' "},
+                {"role": "system", "content": "You are Jane, Dr. Yu Yong Poh's PA, who is also SQL expert that generates SQLITE SQL code based on user queries and database schemas.Strictly SQlite codes only. No description. If users ask something not related to the schema, just state 'nothing is found' "},
                 {"role": "user", "content": f"Schema:\n{schema}\n\nQuery: {user_query}"}
             ]
         )
