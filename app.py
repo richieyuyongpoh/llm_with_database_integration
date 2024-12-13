@@ -19,6 +19,7 @@ if st.checkbox("Show Demo Information"):
         """
         This app demonstrates a simple demo on LLM with database integration. 
         It uses a schema provided by [Ankit Kumar](https://github.com/ankittkp/Bank-Database-Design). 
+        You may download a copy [HERE](https://drive.google.com/file/d/1scTV3Vq_qG6cRxmi4gYO_CtSispqc1gi/view?usp=sharing)
         The database is created using dummy data. Only a few entries are inserted in the database.
 
         **Example Queries:**
