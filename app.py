@@ -31,8 +31,8 @@ uploaded_file = st.file_uploader("Upload Database Schema (Text):", type="txt")
 if uploaded_file is not None:
     # Read the schema from the uploaded text file
     schema = uploaded_file.read().decode("utf-8") 
-    st.write("Uploaded Schema:")
-    st.text(schema)  # Display the schema as text
+  #  st.write("Uploaded Schema:")
+  #  st.text(schema)  # Display the schema as text
 
     # User query input
     user_query = st.text_input("Ask a question about your data:")
@@ -68,7 +68,7 @@ if uploaded_file is not None:
 
             # Display the results
             st.write("Results:")
-            st.dataframe(results)
+         #   st.dataframe(results)
 
             # Generate a response using GPT-4o-mini, optionally including the user's name
             response = openai.ChatCompletion.create(
