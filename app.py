@@ -32,10 +32,10 @@ if st.checkbox("Show Demo Information"):
     )
 
 # Optional user name input
-user_name = st.text_input("Your Name (optional):")
+user_name = st.sidebar.text_input("Your Name (optional):")
 
 # File upload for database schema (text file)
-uploaded_file = st.file_uploader("Upload Database Schema (Text):", type="txt")
+uploaded_file = st.sidebar.file_uploader("Upload Database Schema (Text):", type="txt")
 
 if uploaded_file is not None:
     # Read the schema from the uploaded text file
