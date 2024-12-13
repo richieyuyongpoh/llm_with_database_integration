@@ -98,7 +98,7 @@ if uploaded_file is not None:
                  model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": f"You are a helpful AI assistant. {'Address the user as ' + user_name if user_name else ''}"},
-                    {"role": "user", "content": f"SQL results:\n{results}\n\nAnswer the user's original query: {user_query}"}
+                    {"role": "user", "content": f"SQL results:\n{response.choices[0].message.content}\n\nAnswer the user's original query: {user_query}"}
                 ]
             )
             # Display the chatbot's response
