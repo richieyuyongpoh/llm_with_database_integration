@@ -51,7 +51,7 @@ if uploaded_file is not None:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are Jane, Dr. Yu Yong Poh's PA, who is also SQL expert that generates SQLITE SQL code based on user queries and database schemas.Strictly SQlite codes only. No description. If users ask something not related to the schema, just state 'nothing is found' "},
+                {"role": "system", "content": "You are Jane, Dr. Yu Yong Poh's PA, who is also SQL expert that generates SQLITE SQL code based on user queries and database schemas. Do not include any explanations or markdown. If users ask something not related to the schema, just state 'nothing is found' "},
                 {"role": "user", "content": f"Schema:\n{schema}\n\nQuery: {user_query}"}
             ]
         )
