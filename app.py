@@ -57,8 +57,8 @@ if uploaded_file is not None:
     sql_code = st.text_area("Paste SQL Code Here:")
 
     if st.button("Execute SQL"):
-        # Connect to the SQLite database (replace 'your_database.db' with your actual database file)
-        conn = sqlite3.connect('your_database.db')
+        # Connect to the SQLite database 
+        conn = sqlite3.connect('bank11.sqlite')
         cursor = conn.cursor()
 
         try:
