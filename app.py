@@ -54,7 +54,10 @@ if uploaded_file is not None:
         )
         
         generated_sql = response.choices[0].message.content
-        st.code(generated_sql, language="sql")
+        
+        clean_sql = re.sub(r"```sql(.*?)```", r"\1", generated_sql)
+        st.code(clean_sql, language="sql")
+        
         st.write("Copy and paste the SQL code below to execute and get the answer.")
 
 # --- Part 2: SQL Execution and Response ---
