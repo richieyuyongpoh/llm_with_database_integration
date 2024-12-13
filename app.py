@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 import openai 
+import re
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
