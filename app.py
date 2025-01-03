@@ -1,4 +1,4 @@
-base_url="https://api.deepseek.com"
+
 
 import streamlit as st
 import pandas as pd
