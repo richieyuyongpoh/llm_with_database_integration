@@ -62,7 +62,7 @@ if uploaded_file is not None:
         if response.choices[0].message.content!= 'nothing is found':
             generated_sql = response.choices[0].message.content
 
-            clean_sql = re.sub(r"```sql\s*(.*?)\s*```", r"\1", generated_sql)
+            clean_sql = re.sub(r"```sql\s*(.*?)\s*;", r"\1", generated_sql)
  
 
 
