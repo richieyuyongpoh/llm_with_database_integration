@@ -7,8 +7,8 @@ from openai import OpenAI
 import re
 
 
-client = OpenAI(api_key=st.secrets["DEEPSEEK_API_KEY"],base_url="https://api.deepseek.com")
-
+#client = OpenAI(api_key=st.secrets["DEEPSEEK_API_KEY"],base_url="https://api.deepseek.com")
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 # --- Part 1: Schema Upload and SQL Generation ---
 
 st.title("LLM-Powered Chatbot with Database Integration")
@@ -53,7 +53,8 @@ if uploaded_file is not None:
     if user_query:
         # Generate SQL code using GPT-4o-mini
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            #model="deepseek-chat",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are Jane, Dr. Yu Yong Poh's PA, who is also SQL expert that generates SQLITE SQL code based on user queries and database schemas. Do not include any explanations or markdown (eg: ' ```sql '). If users ask something not related to the schema, just state 'nothing is found' "},
                 {"role": "user", "content": f"Schema:\n{schema}\n\nQuery: {user_query}"}
@@ -83,7 +84,8 @@ if uploaded_file is not None:
 
                 # Generate a response using GPT-4o-mini, optionally including the user's name
                 response = client.chat.completions.create(
-                    model="deepseek-chat",
+                    #model="deepseek-chat",
+                    model="gpt-4o-mini",
                     messages=[
                         {"role": "system", "content": f"You are Jane, Dr. Yu Yong Poh's PA. {'Address the user as ' + user_name if user_name else ''}"},
                         {"role": "user", "content": f"SQL results:\n{results}\n\nAnswer the user's original query: {user_query}"}
@@ -101,7 +103,8 @@ if uploaded_file is not None:
 
         else:
             response = client.chat.completions.create(
-                 model="deepseek-chat",
+                 #model="deepseek-chat",
+                 model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": f"You are Jane, Dr. Yu Yong Poh's PA. {'Address the user as ' + user_name if user_name else ''}. Referring to user query , politely tell the user that couldn't retrieve any specific information from the database."},
                     {"role": "user", "content": f"SQL results:\n{response.choices[0].message.content}\n\nAnswer the user's original query: {user_query}"}
